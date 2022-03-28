@@ -77,6 +77,7 @@ export default function MainPage() {
             <div style={bodyStyle}>
                 <Router>
                     <Routes>
+                        <Route path='/' element={<GoTo />} />
                         <Route path={homePath} element={<HomePage repos={repos} userName={userName} fetchMoreData={fetchMoreData} perpage={perpage} reposLength={reposLength} />} />
                         <Route path={detailPath} element={<ReposDetail repos={repos} apiUrlUserName={apiUrlUserName} />} />
                     </Routes>
