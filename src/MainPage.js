@@ -4,10 +4,10 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 
 import HomePage from "./page/HomePage";
+import ReposList from "./page/ReposList";
 import ReposDetail from "./page/ReposDetail";
 import Header from "./page/Header";
 import Footer from "./page/Footer";
-import GoTo from "./page/GoTo";
 
 export default function MainPage() {
 
@@ -78,8 +78,8 @@ export default function MainPage() {
             <div style={bodyStyle}>
                 <Router>
                     <Routes>
-                        <Route path='/' element={<GoTo />} />
-                        <Route path={homePath} element={<HomePage repos={repos} userName={userName} fetchMoreData={fetchMoreData} perpage={perpage} reposLength={reposLength} />} />
+                        <Route path='/' element={<HomePage userName={userName}/>} />
+                        <Route path={homePath} element={<ReposList repos={repos} userName={userName} fetchMoreData={fetchMoreData} perpage={perpage} reposLength={reposLength} />} />
                         <Route path={detailPath} element={<ReposDetail repos={repos} apiUrlUserName={apiUrlUserName} />} />
                     </Routes>
                 </Router>

@@ -7,7 +7,7 @@ export default function GoTo(props) {
 
     return (
         <div >
-            goto
+            <input></input>
         </div>
     );
 }
