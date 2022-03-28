@@ -9,7 +9,6 @@ ReactDOM.render(
   <React.StrictMode>
     <ResetStyle />
     <GlobalStyle />
-    
     <MainPage />
   </React.StrictMode>,
   document.getElementById('root')

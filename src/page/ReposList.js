@@ -4,12 +4,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import ReposItem from "./ReposItem";
 
-
 export default function ReposList(props) {
+
     const { repos, fetchMoreData, perpage, reposLength } = props;
 
+    // style
     const windowHeight = window.innerHeight;
-
     const listStyle = {
         width: '100%',
         height: windowHeight - 100,
@@ -30,7 +30,6 @@ export default function ReposList(props) {
         display: 'flex',
         justifyContent: 'center',
     }
-
 
     return (
         <div style={listStyle} id="scrollableDiv">

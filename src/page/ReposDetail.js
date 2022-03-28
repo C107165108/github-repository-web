@@ -11,16 +11,18 @@ export default function ReposDetail(props) {
     const apirepoName = urlPath.name;
 
     const [detailRepo, setDetailRepo] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
 
+        setIsLoading(true);
         axios
             .get(`https://api.github.com/repos/${apiUrlUserName}/${apirepoName}`)
             .then(response => {
 
                 const targetRepo = response.data;
                 setDetailRepo(targetRepo)
-
+                setIsLoading(false);
             })
             .catch(error => {
                 console.log(error)
@@ -31,11 +33,21 @@ export default function ReposDetail(props) {
     const { full_name, visibility, description, stargazers_count, html_url, language } = detailRepo;
 
     // style
+    const loadingImgStyle = {
+        width: 30,
+    }
+    const loadingStyle = {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItem: 'center',
+        marginTop: 50,
+    }
+
     const detailStyle = {
         width: '60%',
         padding: 32,
-
     }
+
     const titleContentStyle = {
         display: 'flex',
         justifyContent: 'space-between',
@@ -44,6 +56,7 @@ export default function ReposDetail(props) {
         color: '#333333',
         flexWrap: 'wrap',
     }
+
     const titleStyle = {
         fontSize: 20,
         fontWeight: '600',
@@ -101,31 +114,37 @@ export default function ReposDetail(props) {
     }
 
     return (
-        <div style={detailStyle}>
+        <>
+            {isLoading ? (
+                <div style={loadingStyle}> <img style={loadingImgStyle} src='https://cdn-icons-png.flaticon.com/512/6356/6356630.png' alt='loading' /></div>
 
-            <div style={titleContentStyle}>
+            ) : (
+                <div style={detailStyle}>
 
-                <div style={titleContentStyle}>
-                    <h2 style={titleStyle}>{full_name}</h2>
-                    <p style={visibility ? visibilityStyle : anguageNone}>{visibility}</p>
-                    <p style={language ? languageStyle : anguageNone}> {language}</p>
-                </div>
+                    <div style={titleContentStyle}>
 
-                <div style={titleContentStyle}>
-                    <img src='https://cdn-icons-png.flaticon.com/512/2107/2107957.png' alt='star' style={ItemStarImgStyle} />
-                    <p style={pStyle}> {stargazers_count}</p>
-                </div>
+                        <div style={titleContentStyle}>
+                            <h2 style={titleStyle}>{full_name}</h2>
+                            <p style={visibility ? visibilityStyle : anguageNone}>{visibility}</p>
+                            <p style={language ? languageStyle : anguageNone}> {language}</p>
+                        </div>
 
-            </div>
+                        <div style={titleContentStyle}>
+                            <img src='https://cdn-icons-png.flaticon.com/512/2107/2107957.png' alt='star' style={ItemStarImgStyle} />
+                            <p style={pStyle}> {stargazers_count}</p>
+                        </div>
 
-            <div style={description ? content : contentnone}>
-                <p style={pStyle}>{description}</p>
-            </div>
+                    </div>
+
+                    <div style={description ? content : contentnone}>
+                        <p style={pStyle}>{description}</p>
+                    </div>
+
+                    <a href={html_url} style={aStyle}>查看</a>
 
 
-            <a href={html_url} style={aStyle}>查看</a>
-
-
-        </div >
+                </div >
+            )}
+        </>
     );
 }
