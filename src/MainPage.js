@@ -7,6 +7,7 @@ import HomePage from "./page/HomePage";
 import ReposDetail from "./page/ReposDetail";
 import Header from "./page/Header";
 import Footer from "./page/Footer";
+import GoTo from "./page/GoTo";
 
 export default function MainPage() {
 
