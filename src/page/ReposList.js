@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import ReposItem from "./ReposItem";
+import ReposItem from "../component/ReposItem";
 
 export default function ReposList(props) {
 
@@ -24,17 +24,17 @@ export default function ReposList(props) {
                 loader={perpage < reposLength
                     ? <div style={loadingStyle}> <img style={loadingImgStyle} src='https://cdn-icons-png.flaticon.com/512/6356/6356630.png' alt='loading' /></div>
                     : ''}
-                scrollableTarget="scrollableDiv"
-            >
+                scrollableTarget="scrollableDiv">
+
                 {repos.map((repo) =>
                     <Link
                         key={repo.id}
                         to={`${repo.name}`}
-                        style={ItemStyle}
-                    >
+                        style={ItemStyle}>
                         <ReposItem key={repo.id} repo={repo} />
                     </Link>
                 )}
+
             </InfiniteScroll>
         </div >
     );

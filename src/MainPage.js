@@ -6,8 +6,8 @@ import axios from 'axios';
 import SearchPage from "./page/SearchPage";
 import ReposList from "./page/ReposList";
 import ReposDetail from "./page/ReposDetail";
-import Header from "./page/Header";
-import Footer from "./page/Footer";
+import Header from "./component/Header";
+import Footer from "./component/Footer";
 
 export default function MainPage() {
 
