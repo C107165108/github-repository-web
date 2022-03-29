@@ -19,11 +19,11 @@ export default function MainPage() {
 
     const getDataLength = () => {
         axios
-            .get(`https://api.github.com/users/${apiUserName}/repos`, {
+            .get(`https://api.github.com/users/${apiUserName}`, {
                 headers: { 'Accept': 'application/vnd.github.v3+json' }
             })
             .then(response => {
-                const targetReposLength = response.data.length;
+                const targetReposLength = response.data.public_repos;
                 setReposLength(targetReposLength)
             })
             .catch(error => {
@@ -71,7 +71,7 @@ export default function MainPage() {
 
     // style
     const windowHeight = window.innerHeight;
-    const bodyStyle = { width: '100%', height: windowHeight -75, display: 'flex', alignItems: 'center', flexDirection: 'column' };
+    const bodyStyle = { width: '100%', height: windowHeight - 75, display: 'flex', alignItems: 'center', flexDirection: 'column' };
 
     return (
         <div>
@@ -83,7 +83,7 @@ export default function MainPage() {
                     <Routes>
                         <Route path='/' element={<SearchPage setApiUserName={setApiUserName} homePath={homePath} fetchData={fetchData} getDataLength={getDataLength} />} />
                         <Route path={homePath} element={<ReposList repos={repos} userName={userName} fetchMoreData={fetchMoreData} perpage={perpage} reposLength={reposLength} />} />
-                        <Route path={detailPath} element={<ReposDetail repos={repos} apiUserName={apiUserName} userName={userName}/>} />
+                        <Route path={detailPath} element={<ReposDetail repos={repos} apiUserName={apiUserName} userName={userName} />} />
                     </Routes>
                 </Router>
             </div>
