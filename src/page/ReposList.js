@@ -10,26 +10,10 @@ export default function ReposList(props) {
 
     // style
     const windowHeight = window.innerHeight;
-    const listStyle = {
-        width: '100%',
-        height: windowHeight - 100,
-        overflow: "auto",
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column'
-    };
-    const ItemStyle = {
-        textDecoration: 'none',
-        color: '#333333'
-    };
-    const loadingImgStyle = {
-        width: 20,
-
-    }
-    const loadingStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-    }
+    const listStyle = { width: '100%', height: windowHeight - 100, overflow: "auto", display: 'flex', alignItems: 'center', flexDirection: 'column' };
+    const ItemStyle = { textDecoration: 'none', color: '#333333' };
+    const loadingImgStyle = { width: 20 };
+    const loadingStyle = { display: 'flex', justifyContent: 'center' };
 
     return (
         <div style={listStyle} id="scrollableDiv">

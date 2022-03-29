@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import axios from 'axios';
 
-import StartPage from "./page/StartPage";
+import SearchPage from "./page/SearchPage";
 import ReposList from "./page/ReposList";
 import ReposDetail from "./page/ReposDetail";
 import Header from "./page/Header";
@@ -11,22 +11,21 @@ import Footer from "./page/Footer";
 
 export default function MainPage() {
 
-    const apiUrlUserName = 'jesseduffield';
 
+    const [apiUserName, setApiUserName] = useState('')
     const [repos, setRepos] = useState([]);
-    const [userName, setUserName] = useState([]);
+    const [userName, setUserName] = useState('');
     const [perpage, setPerPage] = useState(10);
     const [reposLength, setReposLength] = useState([]);
 
     const getDataLength = () => {
         axios
-            .get(`https://api.github.com/users/${apiUrlUserName}`, {
+            .get(`https://api.github.com/users/${apiUserName}/repos`, {
                 headers: { 'Accept': 'application/vnd.github.v3+json' }
             })
             .then(response => {
-                const targetReposLength = response.data.public_repos;
+                const targetReposLength = response.data.length;
                 setReposLength(targetReposLength)
-                console.log(targetReposLength)
             })
             .catch(error => {
                 console.log(error)
@@ -35,7 +34,7 @@ export default function MainPage() {
 
     const fetchData = () => {
         axios
-            .get(`https://api.github.com/users/${apiUrlUserName}/repos?per_page=${perpage}`, {
+            .get(`https://api.github.com/users/${apiUserName}/repos?per_page=${perpage}`, {
                 headers: { 'Accept': 'application/vnd.github.v3+json' }
             })
             .then(response => {
@@ -51,11 +50,6 @@ export default function MainPage() {
                 console.log(error)
             })
     }
-
-    useEffect(() => {
-        fetchData();
-        getDataLength();
-    }, []);
 
     const fetchMoreData = () => {
         const moreTendata = perpage + 10;
@@ -73,12 +67,12 @@ export default function MainPage() {
     };
 
     // path
-    const homePath = `users/${userName}/repos`;
-    const detailPath = `users/${userName}/repos/:name`;
+    const homePath = `users/${apiUserName}/repos`;
+    const detailPath = `users/${apiUserName}/repos/:name`;
 
     // style
     const windowHeight = window.innerHeight;
-    const bodyStyle = { width: '100%', height: windowHeight - 75, display: 'flex', alignItems: 'center', flexDirection: 'column' };
+    const bodyStyle = { width: '100%', height: windowHeight -75, display: 'flex', alignItems: 'center', flexDirection: 'column' };
 
     return (
         <div>
@@ -88,9 +82,9 @@ export default function MainPage() {
             <div style={bodyStyle}>
                 <Router>
                     <Routes>
-                        <Route path='/' element={<StartPage userName={userName} />} />
+                        <Route path='/' element={<SearchPage setApiUserName={setApiUserName} homePath={homePath} fetchData={fetchData} getDataLength={getDataLength} />} />
                         <Route path={homePath} element={<ReposList repos={repos} userName={userName} fetchMoreData={fetchMoreData} perpage={perpage} reposLength={reposLength} />} />
-                        <Route path={detailPath} element={<ReposDetail repos={repos} apiUrlUserName={apiUrlUserName} />} />
+                        <Route path={detailPath} element={<ReposDetail repos={repos} apiUserName={apiUserName} userName={userName}/>} />
                     </Routes>
                 </Router>
             </div>
