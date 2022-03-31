@@ -26,7 +26,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 ### ` 開新分頁至該 repository 在 GitHub 上的頁面 `
 
 <img src="https://github.com/C107165108/github-repository-web/blob/pic/src/pic/Open-a-new-tab.gif" width="800" alt="open-new-tab"/>
-![image](https://github.com/C107165108/github-repository-web/blob/pic/src/pic/Open-a-new-tab.gif)
 
 ## 架構設計
 
