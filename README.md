@@ -4,10 +4,6 @@
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-
 ### ` 輸入 username / SearchPage `
 
 輸入username即可查看user的存儲庫
