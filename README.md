@@ -19,7 +19,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 <img src="https://github.com/C107165108/github-repository-web/blob/pic/src/pic/ReposList.png" width="800" alt="瀏覽github-repository"/>
 
-### ` 瀏覽單一 repository 頁面 / PepoDetail`
+### ` 瀏覽單一 repository 頁面 / PeposDetail`
 
 <img src="https://github.com/C107165108/github-repository-web/blob/pic/src/pic/PepoDetail.png" width="800" alt="瀏覽單一repository頁面"/>
 
