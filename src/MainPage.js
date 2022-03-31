@@ -15,6 +15,7 @@ export default function MainPage() {
     const [repos, setRepos] = useState([]);
     const [userName, setUserName] = useState('');
     const [perpage, setPerPage] = useState(10);
+    const [page, setPage] = useState(1);
     const [reposLength, setReposLength] = useState([]);
 
     const getDataLength = () => {
@@ -33,7 +34,7 @@ export default function MainPage() {
 
     const fetchData = () => {
         axios
-            .get(`https://api.github.com/users/${apiUserName}/repos?per_page=${perpage}`, {
+            .get(`https://api.github.com/users/${apiUserName}/repos?per_page=${perpage}&page=${page}`, {
                 headers: { 'Accept': 'application/vnd.github.v3+json' }
             })
             .then(response => {
@@ -50,20 +51,52 @@ export default function MainPage() {
             })
     }
 
-    const fetchMoreData = () => {
+
+    const getMoreData = () => {
+
+        // peerpage
         const moreTendata = perpage + 10;
+
+        // limitReposLength
         const limitreposLength = reposLength + 10;
+        const newlimiten = parseInt((limitreposLength % 100) / 10)
+        const newlimitone = parseInt((limitreposLength % 100) / 10)
+        const newlimitLength = newlimiten * 10 + newlimitone
+        // limitPageLength
+        const limitPage = reposLength / 100
 
-        if (moreTendata < limitreposLength + 10) {
-            setTimeout(() => {
-                setPerPage(moreTendata);
-            }, 1500);
+        if (reposLength <= 100) {
 
-            fetchData();
+            if (moreTendata < limitreposLength + 10) {
+                setTimeout(() => {
+                    setPerPage(moreTendata);
+                }, 1500);
+                fetchData();
+            } else {
+                console.log('no more data')
+            }
+
         } else {
-            console.log('nomoredata')
+            if (reposLength > 100, page <= limitPage) {
+                if (moreTendata <= newlimitLength + 10) {
+                    setTimeout(() => {
+                        setPerPage(moreTendata);
+                    }, 1500);
+                    fetchData();
+                } else {
+                    const perpage = 0
+                    console.log('perpage', perpage + 10, 'page', page + 1)
+                    setTimeout(() => {
+                        setPerPage(perpage + 10);
+                        setPage(page + 1);
+                    }, 1500);
+                }
+            } else {
+                console.log('no more data')
+            }
         }
     };
+
 
     // path
     const homePath = `users/${apiUserName}/repos`;
@@ -82,7 +115,7 @@ export default function MainPage() {
                 <Router>
                     <Routes>
                         <Route path='/' element={<SearchPage setApiUserName={setApiUserName} homePath={homePath} fetchData={fetchData} getDataLength={getDataLength} />} />
-                        <Route path={homePath} element={<ReposList repos={repos} userName={userName} fetchMoreData={fetchMoreData} perpage={perpage} reposLength={reposLength} />} />
+                        <Route path={homePath} element={<ReposList repos={repos} userName={userName} getMoreData={getMoreData} perpage={perpage} reposLength={reposLength} />} />
                         <Route path={detailPath} element={<ReposDetail repos={repos} apiUserName={apiUserName} userName={userName} />} />
                     </Routes>
                 </Router>

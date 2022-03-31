@@ -6,7 +6,7 @@ import ReposItem from "../component/ReposItem";
 
 export default function ReposList(props) {
 
-    const { repos, fetchMoreData, perpage, reposLength } = props;
+    const { repos, getMoreData, perpage, reposLength } = props;
 
     // style
     const windowHeight = window.innerHeight;
@@ -19,7 +19,7 @@ export default function ReposList(props) {
         <div style={listStyle} id="scrollableDiv">
             <InfiniteScroll
                 dataLength={perpage}
-                next={fetchMoreData}
+                next={getMoreData}
                 hasMore={true}
                 loader={perpage < reposLength
                     ? <div style={loadingStyle}> <img style={loadingImgStyle} src='https://cdn-icons-png.flaticon.com/512/6356/6356630.png' alt='loading' /></div>
