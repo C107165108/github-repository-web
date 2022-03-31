@@ -1,6 +1,6 @@
 # github-repository-web
 
-# Getting Started with github-repository-web
+##Open a new tab 如何啟動
 
 ### `npm start`
 
@@ -21,11 +21,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ### `瀏覽單一 repository 頁面(PepoDetail)`
 
-<img src="https://github.com/C107165108/github-repository-web/blob/pic/src/pic/PepoDetail.png" width="800" alt="瀏覽github-repository"/>
+<img src="https://github.com/C107165108/github-repository-web/blob/pic/src/pic/PepoDetail.png" width="800" alt="瀏覽單一repository頁面"/>
 
 ### `開新分頁至該 repository 在 GitHub 上的頁面`
 
-<img src="https://github.com/C107165108/github-repository-web/blob/pic/src/pic/ReposList.png" width="800" alt="瀏覽github-repository"/>
+![image](https://github.com/C107165108/github-repository-web/blob/pic/src/pic/Open-a-new-tab.gif)
 
 ### 架構設計
 
