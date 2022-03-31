@@ -1,6 +1,6 @@
 # github-repository-web
 
-##Open a new tab 如何啟動
+## 如何啟動
 
 ### `npm start`
 
